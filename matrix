@@ -1,0 +1,12 @@
+import numpy as np
+
+a = np.array(np.random.randint(0, 5, size=(5, 3)))
+
+average_rows = np.mean(a, axis=1)
+average_columns = np.mean(a, axis=0)
+minimum_average_row = np.min(average_rows)
+
+print(a)
+print(f"Середні значення рядків: {average_rows}")
+print(f"Середні значення стовпців: {average_columns}")
+print(f"Найнижче середнє значення серед рядків: {minimum_average_row}")
