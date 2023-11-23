@@ -1,0 +1,81 @@
+import math 
+
+import numpy as np 
+
+from scipy.misc import derivative 
+
+def f(x): 
+
+   return 6*pow(x, 4) + 3*pow(x,3) - pow(x, 2)  + x - 7 
+
+eps=0.0001 
+
+ 
+
+def find_segments(): #відокремлюємо корені 
+
+    search_range = np.arange(-10, 10, 1) 
+
+     
+
+    a = None 
+
+    previous_x = None 
+
+    current_x  = None 
+
+    segments = [] 
+
+ 
+
+    for x in search_range: 
+
+        x = round(x, 4) 
+
+        current_x = f(x) 
+
+        if previous_x != None and previous_x * current_x < 0: 
+
+            segments.append((a, x)) 
+
+        a = x 
+
+        previous_x = current_x 
+
+    return segments 
+
+ 
+
+segments = find_segments() 
+
+for a, b in segments: 
+
+    print(f'Found segment:  [{a}, {b}]') 
+
+def rec(a, b, eps): #метод половинного ділення 
+
+    while (abs(a-b) > eps): 
+
+        if f(a)*f((a+b)/2)<0:  
+
+            b = (a+b)/2  
+
+        else:  
+
+            a = (a+b)/2 
+
+        x = (a+b)/2 
+
+     
+
+    print ('x= ', round(x,5), '  -   Half division method') 
+
+ 
+
+ 
+
+a=0. #початок першого відрізка 
+
+b=1. # кінець першого відрізка 
+
+rec (a,b,eps) 
