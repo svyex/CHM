@@ -1,0 +1,23 @@
+import numpy as np 
+from scipy.integrate import odeint 
+import matplotlib.pyplot as plt  
+# function that returns dy/dx 
+def model(y,x): 
+    x + np.sin(y/np.sqrt(11)) 
+    return x + np.sin(y/np.sqrt(11))  
+# initial condition 
+y0 = 1.2
+# x points 
+x = np.array ([i*0.2 for i in range(0, 6 )]) 
+# solve ODE 
+y = odeint(model,y0,x) 
+print('x=', x) 
+print('y=',y)  
+# plot results 
+plt.plot(x,y) 
+plt.xlabel('x') 
+plt.ylabel('y(x)') 
+plt.title('Розв’язання диф. рівняння') 
+plt.grid()  
+plt.show()
+
